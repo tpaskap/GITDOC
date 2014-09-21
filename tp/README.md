@@ -1,15 +1,29 @@
 # TP: Développement collaboratif décentralisé avec GIT
 
 ## Sommaire
-**[Installation de git](#installation-de-git)**  
-**[Installation outils graphiques](#installation-outils-graphiques)**  
-**[Customisation environnement](#customisation-environnement)**  
-**[Ajouter .bashrc](#ajouter-bashrc)**  
-**[Ajouter .gitconfig](#ajouter-gitconfig)**  
-**[Ajout .gitignore](#ajout-gitignore)**  
-**[Rappels des fondamentaux](#rappels-des-fondamentaux)**  
+**[Installation de git](#installation-de-git)**
 
-**Note:** Convertir ce fichier en pdf : http://dillinger.io, Top menu > Utilities > Export as PDF File
+**[Installation outils graphiques](#installation-outils-graphiques)**
+
+**[Customisation environnement](#customisation-environnement)**
+
+**[Ajouter .bashrc](#ajouter-bashrc)**
+
+**[Ajouter .gitconfig](#ajouter-gitconfig)**
+
+**[Ajout .gitignore](#ajout-gitignore)**
+
+**[Rappels des fondamentaux](#rappels-des-fondamentaux)**
+
+**[1 Publication de révisions](#1-publication-de-r-visions)**
+
+**[2 Branches de développement](#2-branches-de-d-veloppement)**
+
+**[3 Synchronisation de plusieurs repositories](#3-synchronisation-de-plusieurs-repositories)**
+
+**[4 Modifications publiées, modifications non publiées](#4-modifications-publi-es-modifications-non-publi-es)**
+
+**Note:** Pour convertir ce fichier en pdf : http://dillinger.io, Top menu > Utilities > Export as PDF File
 
 ## Installation de git
 ```sh
@@ -46,7 +60,7 @@ Ajouter dans ~/.gitconfig
      [user]
      	name = Prenom Nom
      	email = monaddresse@mail.fr
-     
+
      [alias]
       co = checkout
       ci = commit
@@ -229,9 +243,9 @@ Nous avons vu que les objets que s'echangent les dépôt gits sont des commits. Af
 Ainsi Git n'appliquera pas un commit ailleurs que sur son père. L'utilisateur de Git pourra vouloir appliquer un commit ailleurs dans l'arbre de commit (par exemple sur une autre branche), il va pour cela devoir creer un nouveau commit (c'est à dire avec un SHA1 dfférent) mais qui contient les mêmes modifications.
 
 Supposons que nous clonions un dépôt (qu'on appelera repo et nommons commitA le dernier commit sur ce dépôt),
-et que nous effectuions un commit dans notre copie de travail (commitB dont le pere est commitA). 
+et que nous effectuions un commit dans notre copie de travail (commitB dont le pere est commitA).
 
-Parallèlement, un autre developpeur effectue un commit commitC au dessus du commitA et envoie ce commit dans le dépôt repo. 
+Parallèlement, un autre developpeur effectue un commit commitC au dessus du commitA et envoie ce commit dans le dépôt repo.
 
 Il n'est plus possible d'envoyer notre commit commitB, car le dernier commit du depot repo n'est pas commitA, mais commitC.
 
@@ -242,7 +256,7 @@ Nous allons voir qu'une autre strategie est possible, de demander (avec la comma
 #### Question 4.1.
 Implementez ce scenario, constater que git push renvoie une erreur, puis au lieu d'invoquer git merge, invoquez
 ```sh
-$ git rebase origin/master 
+$ git rebase origin/master
 ```
 (origin/master etant le nom de la branche distante avec laquelle on voudrait normalement effectuer un merge).
 Git va recréer les commits de votre branche master qui ne sont pas dans la branche master du dépôt repo et va les placer au dessus du dernier commit de la branche
@@ -250,23 +264,23 @@ master de repo).
 **Attention, il est très fortement déconseille de rebase des commits qui ont dejà été publies**, c'est à dire present sur un autre dépôt. La Question suivante va donc vous montrer ce qu'il faut éviter de faire.
 
 #### Question 4.2.
-Synchonisez vos 3 dépôts. 
-Dans le dépôt 3, effectuez un commit. 
-Publiez-le dans le depot 2. 
-Dans le dépôt 1 effectuez d'autres commits, récupérez ce commit dans le dépôt 3 à l'aide de 
+Synchonisez vos 3 dépôts.
+Dans le dépôt 3, effectuez un commit.
+Publiez-le dans le depot 2.
+Dans le dépôt 1 effectuez d'autres commits, récupérez ce commit dans le dépôt 3 à l'aide de
 ```sh
-$ git fetch repo1 
+$ git fetch repo1
 ```
-(car nous avons declare une remote appelee repo1 dans le dépôt 3 qui pointe vers le premier dépôt), 
-puis (dans le dépôt 3), rebasez votre branche master au dessus de la branche repo1/master avec 
+(car nous avons declare une remote appelee repo1 dans le dépôt 3 qui pointe vers le premier dépôt),
+puis (dans le dépôt 3), rebasez votre branche master au dessus de la branche repo1/master avec
 ```sh
 $ git rebase repo1/master
 ```
 Que se passe-t-il si on essaie de merger cette branche avec la branche presente dans le dépôt 2 ?
 
 Un autre cas de modification de commit est avec la sous-commande amend de Git.
-amend permet d'éditer, de modifier le contenu d'un commit. Supposons qu'on vienne de commiter un commit intitulé orthographe et qu'il corrige des fautes d'orthographes. 
-Supposons qu'une faute ne soit pas corrigée par ce commit, et qu'on ne veuille pas créer un autre commit par dessus, il est possible de modifier le dernier commit avec 
+amend permet d'éditer, de modifier le contenu d'un commit. Supposons qu'on vienne de commiter un commit intitulé orthographe et qu'il corrige des fautes d'orthographes.
+Supposons qu'une faute ne soit pas corrigée par ce commit, et qu'on ne veuille pas créer un autre commit par dessus, il est possible de modifier le dernier commit avec
 ```sh
 $ git commit --amend
 ```
