@@ -1,19 +1,29 @@
 ﻿TP: Développement collaboratif décentralisé
 
 
-Avant tout installation de git
+Avant tout: 
+
+Installation de git
+===================
+
 $ sudo apt-get install git
 
-Customisation de l'environnement
+Installation d'outils graphiques
+================================
+
 $ sudo apt-get install gitk
 $ sudo apt-get install git-gui
 $ sudo apt-get install gitg
 $ sudo apt-get install meld
 
+Customisation de l'environnement
+================================
+
 $ cd ~
 $ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
 
 Ajouter dans ~/.bashrc
+----------------------
 # gitprompt configuration
 # Set config variables first
 GIT_PROMPT_ONLY_IN_REPO=1
@@ -26,7 +36,7 @@ if [ -f ~/.bash-git-prompt/gitprompt.sh ]; then
 fi
 
 Ajouter dans ~/.gitconfig
-
+-------------------------
 [user]
 	name = Prenom Nom
 	email = monaddresse@mail.fr
@@ -40,8 +50,9 @@ Ajouter dans ~/.gitconfig
   type = cat-file -t
   dump = cat-file -p
 
-pour chaque repos
-.gitignore
+
+Pour chaque copie de travail ajouter dans .gitignore
+----------------------------------------------------
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
 *.un~
@@ -49,21 +60,22 @@ Session.vim
 .netrwhist
 *~
 
+Et maintenant Let's GO
+======================
 
-Git est un logiciel de contrôle de versions décentralisé. Contrairement à Subversion, qui se base sur un unique dépôt avec lequel se synchronisent une ou plusieurs copies de travail (les copies de travail ne peuvent se synchroniser entre elles : elles doivent passer par le dépôt), chaque copie de travail d'un projet versioné  avec Git joue aussi le rôle de dépôt, et il est possible de synchroniser entre elles n'importe quelles copies de travail. De plus, Git permet d'utiliser une ou plusieurs branche de développement et de fusionner entre elles ces branches de développement.
+Git est un logiciel de contrôle de versions décentralisé. Contrairement à Subversioni ou CVS, qui se base sur un unique dépôt avec lequel se synchronisent une ou plusieurs copies de travail (les copies de travail ne peuvent se synchroniser entre elles : elles doivent passer par le dépôt), chaque copie de travail d'un projet versioné avec Git joue aussi le rôle de dépôt, et il est possible de synchroniser entre elles n'importe quelles copies de travail. De plus, Git permet d'utiliser une ou plusieurs branche de développement et de fusionner entre elles ces branches de développement.
 
 1 Publication de révisions
+--------------------------
 Nous allons tout d'abord nous intéresser à l'aspect gestionnaire de version de Git: comment enregistrer l'historique des modifications apportées à un projet. Pour initialiser un repository, il convient d'invoquer la commande
 
-git init monrepo
+$ git init monrepo
 
-Cette commande initialise un dépôt Git
-dans le repertoire monrepo
-(qui est cree si celui-ci n'existe pas). Ce répertoire contient alors à la fois une version de travail (dans monrepo) et un repository Git (dans monrepo/.git). Bien que Git ait été conçu pour gérer du code source, nous allons nous en servir dans ce TP pour gérer des fichiers textes simples, pour nous concentrer sur le fonctionnement de Git plutôt que sur du code.
+Cette commande initialise un dépôt Git dans le repertoire monrepo (qui est crée si celui-ci n'existe pas). Ce répertoire contient alors à la fois une version de travail (dans monrepo) et un repository Git (dans monrepo/.git). Bien que Git ait été conçu pour gérer du code source, nous allons nous en servir dans ce TP pour gérer des fichiers textes simples, pour nous concentrer sur le fonctionnement de Git plutôt que sur du code.
 
 Question 1.1.
-Initialiser un dépôt Git, et créez le fichier burger.txt
-qui contient la liste des ingrexpédients d'un burger (un ingredient par ligne).
+~~~~~~~~~~~~~
+Initialiser un dépôt Git, et créez le fichier burger.txt à la racine du repo qui contient la liste des ingredients d'un burger (un ingredient par ligne).
 
 steak
 salade
@@ -71,7 +83,7 @@ tomate
 cornichon
 fromage
 
-Git a plusieurs interfaces utilisateur, la plus complète étant l'interface en ligne de commande (CLI), mais nous allons aussi utiliser Gitg qui est une interface graphique à Git.
+Git a plusieurs interfaces utilisateur, la plus complète étant l'interface en ligne de commande (CLI), mais nous allons aussi utiliser Gitg ou Gitk qui sont des interface graphique à Git.
 
 
 Depuis le répertoire de votre dépôt, lancez Gitg (ou lancez Gitg puis ouvrez votre dépôt).
@@ -83,19 +95,20 @@ Gitg a deux onglets History et Commit. Dans l'onglet Commit, on remarque 4 cadre
  - Commit message qui contient le message du commit courant
 
 Question 1.2.
-Selectionnez votre fichier burger.txt
-comme modication à être commitée; editez un message de commit, puis commitez. Retournez dans l'onglet History pour observer votre commit.
+~~~~~~~~~~~~~
+Selectionnez votre fichier burger.txt comme modication à être commitée; editez un message de commit, puis commitez. Retournez dans l'onglet History pour observer votre commit.
 
 Question 1.3.
-Rajoutez un ingredient dans
-burger.txt, puis creez quelques autres sandwich.txt et commitez toutes ces modications. Regardez l'onglet
-History, votre deuxieme commit doit apparaître.
+~~~~~~~~~~~~~
+Rajoutez un ingredient dans burger.txt, puis creez quelques autres sandwich.txt et commitez toutes ces modications. Regardez l'onglet History, votre deuxieme commit doit apparaître.
 
 Question 1.4.
-Creez un nouveau sandwich, et modiez un sandwich existant. Nous allons commiter ces changements avec l'interface en ligne de commande. Commencons par taper
+~~~~~~~~~~~~~
+Creez un nouveau sandwich, et modiifiez un sandwich existant. Nous allons commiter ces changements avec l'interface en ligne de commande. Commencons par taper
 
 $ git commit
-que se passe-t-il ? Lisez le paragraphe DESCRIPTION de la page de manuel git-commit(1) (ce que l'on peut faire soit en invoquant man git-commit, soit git help commit). Commitez ces changements. Observer l'arbre de commit dans l'onglet History de Gitg (Attention, il faudra sans doute rafraîchir avec Ctrl+R).
+
+Que se passe-t-il ? Lisez le paragraphe DESCRIPTION de la page de manuel git-commit(1) (ce que l'on peut faire soit en invoquant man git-commit, soit git help commit). Commitez ces changements. Observer l'arbre de commit dans l'onglet History de Gitg (Attention, il faudra sans doute rafraîchir avec Ctrl+R).
 
 
 2 Branches de développement
