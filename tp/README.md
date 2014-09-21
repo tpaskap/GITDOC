@@ -45,15 +45,10 @@ $ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
 ```
 
 ### Ajouter .bashrc
-    # Set config variables first
-    # GIT_PROMPT_ONLY_IN_REPO=1
-    # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
-    # GIT_PROMPT_START=...    # uncomment for custom prompt start sequence
-    # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
-    # as last entry source the gitprompt script
-    # if [ -f ~/.bash-git-prompt/gitprompt.sh ]; then
-    #      . ~/.bash-git-prompt/gitprompt.sh
-    # fi
+    GIT_PROMPT_ONLY_IN_REPO=1
+    if [ -f ~/.bash-git-prompt/gitprompt.sh ]; then
+          . ~/.bash-git-prompt/gitprompt.sh
+    fi
 
 ### Ajouter .gitconfig
 Ajouter dans ~/.gitconfig
@@ -129,8 +124,8 @@ Que se passe-t-il ? Lisez le paragraphe DESCRIPTION de la page de manuel git-com
 La partie 1 présentait l'utilisation simple de Git pour creer un historique des modications. Nous allons maintenant nous concentrer sur la notion de branche. Lors du développement d'un projet, il peut arriver que l'on veuille introduire 1 une nouvelle fonctionnalite dans le projet, sans "casser" le projet. Nous voudrions donc pouvoir basculer instantanement de la version stable du projet à sa version "en développement". C'est ce que nous permettent de faire les branches.
 
 #### Question 2.1.
-Creez une nouvelle branche intitulée developpement dans votre repository. Avec Gitg, dans l'onglet History, selectionnez le dernier commit (attention l'etiquette
-master represente la branche master), clic-droit puis Create New Branch.
+Créez une nouvelle branche intitulée "developpement" dans votre repository. Avec Gitg, dans l'onglet History, selectionnez le dernier commit (attention l'étiquette
+master représente la branche master), clic-droit puis Create New Branch.
 
 Nous avons donc cree une nouvelle branche, qui est pour l'instant la même que la branche principale. Il est possible de basculer d'une branche à l'autre en cliquant droit sur la branche et selectionnant Checkout working copy.
 
@@ -173,63 +168,66 @@ Git permet un travail collaboratif sur un dépôt. C'est-à-dire qu'il est possible
 
 #### Question 3.1.
 Creez un nouveau dépôt (avec git init --bare)).
+```sh
+$ mkdir $PATH_TO_REPO2
+$ git init --bare
+```
 Ceci initialise un dépôt Git sans copie de travail. Il y a deux facons de synchroniser entre eux deux dépôts :
-- soit en recuperant les commits du dépôt distant (pull)
+- soit en récupérant les commits du dépôt distant (pull)
 - soit en envoyant des commits vers le dépôt distant (push).
 Dans le deuxieme cas, il faut que le dépôt distant soit un dépôt bare, c'est à dire sans copie de travail.
 
 #### Question 3.2.
-Envoyez les commits de votre premier dépôt vers le second avec les commandes (executees depuis votre premier dépôt) :
+Envoyez les commits de votre premier dépôt vers le second avec les commandes (executees depuis votre premier dépôt _monrepo_) :
 ```sh
-$ git push file:///$PATH_TO_REPO2 master:master
+$ git push file://$PATH_TO_REPO2 master:master
 ```
 Cette commande va envoyer la branche master du premier dépôt dans une branche appelee master dans le second dépôt.
 La seconde va effectuer la même chose avec la branche développement.
 ```sh
-$ git push file:///$PATH_TO_REPO2 developpement:developpement
+$ git push file://$PATH_TO_REPO2 developpement:developpement
 ```
-Observez le resultat en lancant Gitg depuis le second dépôt.
+Observez le résultat en lancant Gitg depuis le second dépôt.
 
-Pour rendre la synchronisation plus interessante, nous allons utiliser une deuxieme copie de travail.
+Pour rendre la synchronisation plus intéressante, nous allons utiliser une deuxième copie de travail.
 
 #### Question 3.3.
-Creez une nouvelle copie de travail à partir du dépôt bare:
+Créez une nouvelle copie de travail à partir du dépôt bare:
 ```sh
-$ git clone file:///$PATH_TO_REPO2 copietravail
+$ git clone file://$PATH_TO_REPO2 copietravail
 ```
 qui crée une copie de travail du second dépôt dans le répertoire _copietravail_.
 
 #### Question 3.4.
-Effectuez quelques modifications dans votre première copie de travail. Propagez ces modications dans votre troisieme dépôt :
-- Envoyez ces modifications dans le second dépôt (avec git push file:///PATH_TO_REPO2 BRANCHE:BRANCHE)
-- Puis depuis le troisieme dépôt, recupérez avec git pull, ces modications depuis le second dépôt. (Comme le troisieme dépôt a été créé à partir du second au moyen de git clone, il n'est pas nécessaire de préciser ici ou Git doit chercher les commits)
+Effectuez quelques modifications dans votre première copie de travail. 
+Propagez ces modications dans votre troisième dépôt : _copietravail_.
+- Envoyez ces modifications dans le second dépôt (avec git push file://PATH_TO_REPO2 BRANCHE:BRANCHE)
+- Puis depuis le troisième dépôt, récupérez avec git pull, ces modications depuis le second dépôt. (Comme le troisieme dépôt a été créé à partir du second au moyen de git clone, il n'est pas nécessaire de préciser ici ou Git doit chercher les commits)
 
 Nous avons mis en place avec le second et troisieme dépôt le schéma de collaboration avec Git le plus courant : il
-y a un dépôt qui fait offce de dépôt maître, et le troisieme dépôt qui peut récuperer et envoyer des commits sur le
-dépôt maître. Nous allons maintenant nous interesser à l'accés concurrent à ce dépôt maître.
+y a un dépôt qui fait office de dépôt maître, et le troisieme dépôt qui peut récupérer et envoyer des commits sur le dépôt maître. Nous allons maintenant nous intéresser à l'accés concurrent à ce dépôt maître.
 
 #### Question 3.5.
-Effectuez des modifications dans le premier dépôt, et envoyez ces modifications dans le second dépôt. Sans synchroniser le troisieme dépôt avec le second, effectuez (et commitez) des modifications dans le troisieme dépôt. Que se passe-t-il maintenant lorsqu'on fait git pull dans le troisieme dépôt ?
+Effectuez des modifications dans le premier dépôt, et envoyez ces modifications dans le second dépôt. Sans synchroniser le troisième dépôt avec le second, effectuez (et commitez) des modifications dans le troisième dépôt. Que se passe-t-il maintenant lorsqu'on fait git pull dans le troisième dépôt ?
 
 #### Question 3.6.
-git pull peut être décompose en git fetch suivi de git merge. Reiterez le scenario de la #### Question precedente mais en faisant git fetch au lieu de git pull, observez "toutes les branches" du dépôt 3 dans Gitg. Un des aspects fondamental de Git est qu'il est décentralisé. Nous avons ici donne un rôle special de dépôt central
-au dépôt 2, mais s'il venait à disparaître, il serait toujours possible de synchroniser entre eux les dépôts 1 et 3.
+git pull peut être décomposé en git fetch suivi de git merge. Réitérez le scenario de la Question précédente mais en faisant git fetch au lieu de git pull, observez "toutes les branches" du dépôt 3 dans Gitg. Un des aspects fondamental de Git est qu'il est décentralisé. Nous avons ici donné un rôle special de dépôt central au dépôt 2, mais s'il venait à disparaître, il serait toujours possible de synchroniser entre eux les dépôts 1 et 3.
 
 #### Question 3.7.
-Dans le dépôt 1, nous allons déclarer l'addresse du dépôt 3, nous allons creer pour cela une remote appelee repo3.
+Dans le dépôt 1, nous allons déclarer l'addresse du dépôt 3, nous allons créer pour cela une remote appelée _repo3_.
 ```sh
-$ git remote add repo3 file:///chemin/vers/repo3
+$ git remote add repo3 file://$PATH_TO_REPO3
 ```
-De même, dans le dépôt 3, nous allons creez une remote appelee repo1 qui pointe vers le premier dépôt.
+De même, dans le dépôt 3, nous allons créez une remote appelée repo1 qui pointe vers le premier dépôt.
 
 #### Question 3.8.
-Effectuez (et commitez) des modifications dans le dépôt 3 et récuperez-les dans le dépôt 1 au moyen de :
+Effectuez (et commitez) des modifications dans le dépôt 3 et récupérez-les dans le dépôt 1 au moyen de :
 ```sh
 $ git fetch repo3
 $ git checkout master
 $ git merge remotes/repo3/master
 ```
-Nous pouvons simplifier cette demarche en declarant que la branche master du dépôt 1 "suit" la branche master du dépôt 3, à l'aide de (depuis le dépôt 1)
+Nous pouvons simplifier cette demarche en declarant que la branche master du dépôt 1 "suit" la branche master du dépôt 3 (depuis le dépôt 1), à l'aide de 
 ```sh
 $ git branch master --set-upstream repo3/master
 ```
@@ -241,13 +239,13 @@ Effectuez des modifications dans le dépôt 1 puis récupérez-les dans le dépôt 3 a
 Synchronisez entre eux les trois dépôts.
 
 ### 4 Modifications publiees, modifications non publiees
-Nous avons vu que les objets que s'echangent les dépôt gits sont des commits. Afin de maintenir une integrite des arbres de commit, Git utilise des primitives cryptographiques. Chaque commit est en fait signé, en fonction du patch qu'il représente, du nom d'auteur, de la date de creation, et aussi de la signature du commit parent (ou des deux parents, dans le cas d'un commit de fusion). Cette signature est un hachage SHA1 de toutes ces informations, et il est possible de se réferer à un commit uniquement par cette signature (de la forme f4ccba7ba89d4f6f8f0853056d47912c640a19c1) ou par un préfixe non ambigu de celle-ci (f4ccba7b).
-Ainsi Git n'appliquera pas un commit ailleurs que sur son père. L'utilisateur de Git pourra vouloir appliquer un commit ailleurs dans l'arbre de commit (par exemple sur une autre branche), il va pour cela devoir creer un nouveau commit (c'est à dire avec un SHA1 dfférent) mais qui contient les mêmes modifications.
+Nous avons vu que les objets que s'échangent les dépôt gits sont des commits. Afin de maintenir une intégrite des arbres de commit, Git utilise des primitives cryptographiques. Chaque commit est en fait signé, en fonction du patch qu'il représente, du nom d'auteur, de la date de création, et aussi de la signature du commit parent (ou des deux parents, dans le cas d'un commit de fusion). Cette signature est un hachage SHA1 de toutes ces informations, et il est possible de se réferer à un commit uniquement par cette signature (de la forme f4ccba7ba89d4f6f8f0853056d47912c640a19c1) ou par un préfixe non ambigu de celle-ci (f4ccba7b).
+Ainsi Git n'appliquera pas un commit ailleurs que sur son père. L'utilisateur de Git pourra vouloir appliquer un commit ailleurs dans l'arbre de commit (par exemple sur une autre branche), il va pour cela devoir créer un nouveau commit (c'est à dire avec un SHA1 dfférent) mais qui contient les mêmes modifications.
 
 Supposons que nous clonions un dépôt (qu'on appelera repo et nommons commitA le dernier commit sur ce dépôt),
-et que nous effectuions un commit dans notre copie de travail (commitB dont le pere est commitA).
+et que nous effectuions un commit dans notre copie de travail (commitB dont le père est commitA).
 
-Parallèlement, un autre developpeur effectue un commit commitC au dessus du commitA et envoie ce commit dans le dépôt repo.
+Parallèlement, un autre développeur effectue un commit commitC au dessus du commitA et envoie ce commit dans le dépôt repo.
 
 Il n'est plus possible d'envoyer notre commit commitB, car le dernier commit du depot repo n'est pas commitA, mais commitC.
 
@@ -260,10 +258,10 @@ Implementez ce scenario, constater que git push renvoie une erreur, puis au lieu
 ```sh
 $ git rebase origin/master
 ```
-(origin/master etant le nom de la branche distante avec laquelle on voudrait normalement effectuer un merge).
+(origin/master étant le nom de la branche distante avec laquelle on voudrait normalement effectuer un merge).
 Git va recréer les commits de votre branche master qui ne sont pas dans la branche master du dépôt repo et va les placer au dessus du dernier commit de la branche
 master de repo).
-**Attention, il est très fortement déconseille de rebase des commits qui ont dejà été publies**, c'est à dire present sur un autre dépôt. La Question suivante va donc vous montrer ce qu'il faut éviter de faire.
+**Attention, il est très fortement déconseille de rebase des commits qui ont dejà été publies**, c'est à dire présent sur un autre dépôt. La Question suivante va donc vous montrer ce qu'il faut éviter de faire.
 
 #### Question 4.2.
 Synchonisez vos 3 dépôts.
@@ -273,12 +271,12 @@ Dans le dépôt 1 effectuez d'autres commits, récupérez ce commit dans le dépôt 3 
 ```sh
 $ git fetch repo1
 ```
-(car nous avons declare une remote appelee repo1 dans le dépôt 3 qui pointe vers le premier dépôt),
+(car nous avons déclare une remote appelée repo1 dans le dépôt 3 qui pointe vers le premier dépôt),
 puis (dans le dépôt 3), rebasez votre branche master au dessus de la branche repo1/master avec
 ```sh
 $ git rebase repo1/master
 ```
-Que se passe-t-il si on essaie de merger cette branche avec la branche presente dans le dépôt 2 ?
+Que se passe-t-il si on essaie de merger cette branche avec la branche présente dans le dépôt 2 ?
 
 Un autre cas de modification de commit est avec la sous-commande amend de Git.
 amend permet d'éditer, de modifier le contenu d'un commit. Supposons qu'on vienne de commiter un commit intitulé orthographe et qu'il corrige des fautes d'orthographes.
@@ -293,4 +291,5 @@ Là encore, il est impératif de ne pas éditer un commit qui a déjà été publié, **
 
 #### Question 4.4.
 Creez un commit, envoyez-le vers un dépôt distant, puis amendez votre commit, synchronisez votre dépôt avec le dépôt distant.
+
 
