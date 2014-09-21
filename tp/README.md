@@ -5,23 +5,26 @@ Avant tout:
 
 Installation de git
 -------------------
-
+```sh
 $ sudo apt-get install git
+```
 
 Installation d'outils graphiques
 --------------------------------
 
+```sh
 $ sudo apt-get install gitk
 $ sudo apt-get install git-gui
 $ sudo apt-get install gitg
 $ sudo apt-get install meld
-
+```
 Customisation de l'environnement
 --------------------------------
 
+```sh
 $ cd ~
 $ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
-
+```
 Ajouter dans ~/.bashrc
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -73,8 +76,9 @@ Git est un logiciel de contrôle de versions décentralisé. Contrairement à Su
 
 Nous allons tout d'abord nous intéresser à l'aspect gestionnaire de version de Git: comment enregistrer l'historique des modifications apportées à un projet. Pour initialiser un repository, il convient d'invoquer la commande
 
+```sh
 $ git init monrepo
-
+```
 Cette commande initialise un dépôt Git dans le repertoire monrepo (qui est crée si celui-ci n'existe pas). Ce répertoire contient alors à la fois une version de travail (dans monrepo) et un repository Git (dans monrepo/.git). Bien que Git ait été conçu pour gérer du code source, nous allons nous en servir dans ce TP pour gérer des fichiers textes simples, pour nous concentrer sur le fonctionnement de Git plutôt que sur du code.
 
 Question 1.1.
@@ -110,8 +114,9 @@ Question 1.4.
 ~~~~~~~~~~~~~
 Creez un nouveau sandwich, et modiifiez un sandwich existant. Nous allons commiter ces changements avec l'interface en ligne de commande. Commencons par taper
 
+```sh
 $ git commit
-
+```
 Que se passe-t-il ? Lisez le paragraphe DESCRIPTION de la page de manuel git-commit(1) (ce que l'on peut faire soit en invoquant man git-commit, soit git help commit). Commitez ces changements. Observer l'arbre de commit dans l'onglet History de Gitg (Attention, il faudra sans doute rafraîchir avec Ctrl+R).
 
 
@@ -127,10 +132,14 @@ Nous avons donc cree une nouvelle branche, qui est pour l'instant la même que l
 Question 2.2.
 Dans la branche developpement effectuez quelques modifications (modications dans les fichiers ou ajout/suppression de fichier), puis commitez-les. Observez ce qu'il se passe dans l'onglet History. (Selectionnez l'affichage de toutes les branches).
 En ligne de commande, pour afficher la branche courante, il suffit d'invoquer git branch. Une branche est créée à partir d'une autre au moyen de
-$ git branch MANOUVELLEBRANCHE
-, et le passage d'une branche à l'autre se fait au moyen de
-$ git checkout MABRANCHE
 
+```sh
+$ git branch MANOUVELLEBRANCHE
+```
+, et le passage d'une branche à l'autre se fait au moyen de
+```sh
+$ git checkout MABRANCHE
+```
 Question 2.3.
 Constatez les différences dans chacune des deux branches. Jusqu'à présent nous avons suivi le scénario simple ou il y a une branche de développement, et une branche stable. Supposons que les modifications dans la branche de développement soient finies et que nous voulions nous lancer dans de nouvelles modifications, il convient de synchroniser les deux branches. Cela s'appelle une fusion de branches (merge en anglais).
 
