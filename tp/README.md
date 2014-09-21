@@ -151,7 +151,7 @@ Jusqu'à present, nous n'avons envisage que des scenarios dans lequels la fusion 
 Que se passe-t-il dans ce cas-là ? Essayez d'implementer ce scenario. Comment Git vous permet-il de resoudre les conflits ?
 Ecrase-t-il unilateralement les modications effectuées dans une branche ?
 
-3 Synchronisation de plusieurs repositories
+### 3 Synchronisation de plusieurs repositories
 Jusqu'à présent, nous avons vu quelques fonctionalités de Git sans nous interesser son aspect collaboratif.
 Git permet un travail collaboratif sur un dépôt. C'est-à-dire qu'il est possible de synchroniser entre elles des branches de deux dépôts différents.
 
@@ -179,8 +179,9 @@ Pour rendre la synchronisation plus interessante, nous allons utiliser une deuxi
 #### Question 3.3.
 Creez une nouvelle copie de travail à partir du dépôt bare:
 ```sh
-$ git clone file:///$PATH_TO_REPO2 copietravail qui crée une copie de travail du second dépôt dans le répertoire copietravail.
+$ git clone file:///$PATH_TO_REPO2 copietravail
 ```
+qui crée une copie de travail du second dépôt dans le répertoire _copietravail_.
 
 #### Question 3.4.
 Effectuez quelques modifications dans votre première copie de travail. Propagez ces modications dans votre troisieme dépôt :
@@ -214,9 +215,8 @@ $ git merge remotes/repo3/master
 ```
 Nous pouvons simplifier cette demarche en declarant que la branche master du dépôt 1 "suit" la branche master du dépôt 3, à l'aide de (depuis le dépôt 1)
 ```sh
-$ git branch master --set-upstream repo3/master.
+$ git branch master --set-upstream repo3/master
 ```
-
 
 #### Question 3.9.
 Effectuez des modifications dans le dépôt 1 puis récupérez-les dans le dépôt 3 au moyen de git pull.
@@ -260,7 +260,7 @@ $ git fetch repo1
 (car nous avons declare une remote appelee repo1 dans le dépôt 3 qui pointe vers le premier dépôt), 
 puis (dans le dépôt 3), rebasez votre branche master au dessus de la branche repo1/master avec 
 ```sh
-$ git rebase repo1/master.
+$ git rebase repo1/master
 ```
 Que se passe-t-il si on essaie de merger cette branche avec la branche presente dans le dépôt 2 ?
 
@@ -268,7 +268,7 @@ Un autre cas de modification de commit est avec la sous-commande amend de Git.
 amend permet d'éditer, de modifier le contenu d'un commit. Supposons qu'on vienne de commiter un commit intitulé orthographe et qu'il corrige des fautes d'orthographes. 
 Supposons qu'une faute ne soit pas corrigée par ce commit, et qu'on ne veuille pas créer un autre commit par dessus, il est possible de modifier le dernier commit avec 
 ```sh
-$ git commit --amend.
+$ git commit --amend
 ```
 
 #### Question 4.3.
@@ -277,3 +277,4 @@ Là encore, il est impératif de ne pas éditer un commit qui a déjà été publié, **
 
 #### Question 4.4.
 Creez un commit, envoyez-le vers un dépôt distant, puis amendez votre commit, synchronisez votre dépôt avec le dépôt distant.
+
