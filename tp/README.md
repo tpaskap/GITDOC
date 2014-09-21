@@ -1,15 +1,20 @@
-TP: Déloppement collaboratif décentralisé
-==========================================
-Avant tout:
+# TP: Déloppement collaboratif décentralisé
 
-Installation de git
--------------------
+## Sommaire
+**[Installation de git](#installation-de-git)**  
+**[Installation outils graphiques](#installation-outils-graphiques)**  
+**[Customisation environnement](#customisation-environnement)**  
+**[Ajouter .bashrc](#ajouter-bashrc)**  
+**[Ajouter .gitconfig](#ajouter-gitconfig)**  
+**[Ajout .gitignore](#ajout-gitignore)**  
+**[Rappels des fondamentaux](#rappels-des-fondamentaux)**  
+
+## Installation de git
 ```sh
 $ sudo apt-get install git
 ```
 
-Installation d'outils graphiques
---------------------------------
+## Installation outils graphiques
 ```sh
 $ sudo apt-get install gitk
 $ sudo apt-get install git-gui
@@ -17,14 +22,13 @@ $ sudo apt-get install gitg
 $ sudo apt-get install meld
 ```
 
-Customisation de l'environnement
---------------------------------
+## Customisation environnement
 ```sh
 $ cd ~
 $ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
 ```
 
-### Ajouter dans ~/.bashrc
+### Ajouter .bashrc
     # Set config variables first
     # GIT_PROMPT_ONLY_IN_REPO=1
     # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
@@ -35,7 +39,8 @@ $ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
     #      . ~/.bash-git-prompt/gitprompt.sh
     # fi
 
-### Ajouter dans ~/.gitconfig
+### Ajouter .gitconfig
+Ajouter dans ~/.gitconfig
      [user]
      	name = Prenom Nom
      	email = monaddresse@mail.fr
@@ -50,7 +55,8 @@ $ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
       dump = cat-file -p
 
 
-### Pour chaque copie de travail ajouter dans .gitignore
+### Ajout .gitignore
+Pour chaque copie de travail ajouter dans .gitignore
      [._]*.s[a-w][a-z]
      [._]s[a-w][a-z]
      *.un~
@@ -58,8 +64,8 @@ $ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
      .netrwhist
      *~
 
-Et maintenant Let's GO
-----------------------
+## Rappels des fondamentaux
+
 Git est un logiciel de contrôle de versions décentralisé. Contrairement à Subversioni ou CVS, qui se base sur un unique dépôt avec lequel se synchronisent une ou plusieurs copies de travail (les copies de travail ne peuvent se synchroniser entre elles : elles doivent passer par le dépôt), chaque copie de travail d'un projet versioné avec Git joue aussi le rôle de dépôt, et il est possible de synchroniser entre elles n'importe quelles copies de travail. De plus, Git permet d'utiliser une ou plusieurs branche de développement et de fusionner entre elles ces branches de développement.
 
 ### 1 Publication de révisions
@@ -236,7 +242,7 @@ git rebase origin/master
 (origin/master etant le nom de la branche distante avec laquelle on voudrait normalement effectuer un merge).
 Git va recréer les commits de votre branche master qui ne sont pas dans la branche master du dépôt repo et va les placer au dessus du dernier commit de la branche
 master de repo).
-** Attention, il est très fortement déconseille de rebase des commits qui ont dejà été publies **, c'est à dire present sur un autre dépôt. La Question suivante va donc vous montrer ce qu'il faut éviter de faire.
+**Attention, il est très fortement déconseille de rebase des commits qui ont dejà été publies**, c'est à dire present sur un autre dépôt. La Question suivante va donc vous montrer ce qu'il faut éviter de faire.
 
 #### Question 4.2.
 Synchonisez vos 3 dépôts. 
@@ -262,7 +268,7 @@ git commit --amend.
 
 #### Question 4.3.
 Creez un commit, puis apportez d'autres modifications, et editez le précédent commit au lieu d'en créer un nouveau.
-Là encore, il est impératif de ne pas éditer un commit qui a déjà été publié, ** c'est ce que la Question suivante vous demande de faire et qu'il faut éviter de faire. **
+Là encore, il est impératif de ne pas éditer un commit qui a déjà été publié, **c'est ce que la Question suivante vous demande de faire et qu'il faut éviter de faire.**
 
 #### Question 4.4.
 Creez un commit, envoyez-le vers un dépôt distant, puis amendez votre commit, synchronisez votre dépôt avec le dépôt distant.
