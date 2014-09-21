@@ -1,4 +1,4 @@
-# TP: Déloppement collaboratif décentralisé
+# TP: Développement collaboratif décentralisé avec GIT
 
 ## Sommaire
 **[Installation de git](#installation-de-git)**  
@@ -8,6 +8,8 @@
 **[Ajouter .gitconfig](#ajouter-gitconfig)**  
 **[Ajout .gitignore](#ajout-gitignore)**  
 **[Rappels des fondamentaux](#rappels-des-fondamentaux)**  
+
+**Note:** Convertir ce fichier en pdf : http://dillinger.io, Top menu > Utilities > Export as PDF File
 
 ## Installation de git
 ```sh
@@ -177,7 +179,7 @@ Pour rendre la synchronisation plus interessante, nous allons utiliser une deuxi
 #### Question 3.3.
 Creez une nouvelle copie de travail à partir du dépôt bare:
 ```sh
-git clone file:///$PATH_TO_REPO2 copietravail qui crée une copie de travail du second dépôt dans le répertoire copietravail.
+$ git clone file:///$PATH_TO_REPO2 copietravail qui crée une copie de travail du second dépôt dans le répertoire copietravail.
 ```
 
 #### Question 3.4.
@@ -199,19 +201,21 @@ au dépôt 2, mais s'il venait à disparaître, il serait toujours possible de synch
 #### Question 3.7.
 Dans le dépôt 1, nous allons déclarer l'addresse du dépôt 3, nous allons creer pour cela une remote appelee repo3.
 ```sh
-git remote add repo3 file:///chemin/vers/repo3
+$ git remote add repo3 file:///chemin/vers/repo3
 ```
 De même, dans le dépôt 3, nous allons creez une remote appelee repo1 qui pointe vers le premier dépôt.
 
 #### Question 3.8.
 Effectuez (et commitez) des modifications dans le dépôt 3 et récuperez-les dans le dépôt 1 au moyen de :
 ```sh
-git fetch repo3
-git checkout master
-git merge remotes/repo3/master
+$ git fetch repo3
+$ git checkout master
+$ git merge remotes/repo3/master
 ```
 Nous pouvons simplifier cette demarche en declarant que la branche master du dépôt 1 "suit" la branche master du dépôt 3, à l'aide de (depuis le dépôt 1)
-git branch master --set-upstream repo3/master.
+```sh
+$ git branch master --set-upstream repo3/master.
+```
 
 #### Question 3.9.
 Effectuez des modifications dans le dépôt 1 puis récupérez-les dans le dépôt 3 au moyen de git pull.
@@ -237,7 +241,7 @@ Nous allons voir qu'une autre strategie est possible, de demander (avec la comma
 #### Question 4.1.
 Implementez ce scenario, constater que git push renvoie une erreur, puis au lieu d'invoquer git merge, invoquez
 ```sh
-git rebase origin/master 
+$ git rebase origin/master 
 ```
 (origin/master etant le nom de la branche distante avec laquelle on voudrait normalement effectuer un merge).
 Git va recréer les commits de votre branche master qui ne sont pas dans la branche master du dépôt repo et va les placer au dessus du dernier commit de la branche
@@ -250,12 +254,12 @@ Dans le dépôt 3, effectuez un commit.
 Publiez-le dans le depot 2. 
 Dans le dépôt 1 effectuez d'autres commits, récupérez ce commit dans le dépôt 3 à l'aide de 
 ```sh
-git fetch repo1 
+$ git fetch repo1 
 ```
 (car nous avons declare une remote appelee repo1 dans le dépôt 3 qui pointe vers le premier dépôt), 
 puis (dans le dépôt 3), rebasez votre branche master au dessus de la branche repo1/master avec 
 ```sh
-git rebase repo1/master.
+$ git rebase repo1/master.
 ```
 Que se passe-t-il si on essaie de merger cette branche avec la branche presente dans le dépôt 2 ?
 
@@ -263,7 +267,7 @@ Un autre cas de modification de commit est avec la sous-commande amend de Git.
 amend permet d'éditer, de modifier le contenu d'un commit. Supposons qu'on vienne de commiter un commit intitulé orthographe et qu'il corrige des fautes d'orthographes. 
 Supposons qu'une faute ne soit pas corrigée par ce commit, et qu'on ne veuille pas créer un autre commit par dessus, il est possible de modifier le dernier commit avec 
 ```sh
-git commit --amend.
+$ git commit --amend.
 ```
 
 #### Question 4.3.
@@ -272,4 +276,3 @@ Là encore, il est impératif de ne pas éditer un commit qui a déjà été publié, **
 
 #### Question 4.4.
 Creez un commit, envoyez-le vers un dépôt distant, puis amendez votre commit, synchronisez votre dépôt avec le dépôt distant.
-
