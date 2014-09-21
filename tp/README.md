@@ -1,28 +1,30 @@
-﻿= TP: DÃ©eloppement collaboratif dÃ©centrasÃ =
+﻿TP: Déloppement collaboratif décentlisé
+=======================================
 
 Avant tout:
 
-== Installation de git ==
-
+Installation de git
+-------------------
 
 $ sudo apt-get install git
 
-=== Installation d'outils graphiques ===
-
+Installation d'outils graphiques
+--------------------------------
 
 $ sudo apt-get install gitk
 $ sudo apt-get install git-gui
 $ sudo apt-get install gitg
 $ sudo apt-get install meld
 
-== Customisation de l'environnement ==
-
+Customisation de l'environnement
+--------------------------------
 
 $ cd ~
 $ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
 
 Ajouter dans ~/.bashrc
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
+
 # gitprompt configuration
 # Set config variables first
 GIT_PROMPT_ONLY_IN_REPO=1
@@ -35,7 +37,8 @@ if [ -f ~/.bash-git-prompt/gitprompt.sh ]; then
 fi
 
 Ajouter dans ~/.gitconfig
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
 [user]
 	name = Prenom Nom
 	email = monaddresse@mail.fr
@@ -51,7 +54,8 @@ Ajouter dans ~/.gitconfig
 
 
 Pour chaque copie de travail ajouter dans .gitignore
-----------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
 *.un~
@@ -60,12 +64,13 @@ Session.vim
 *~
 
 Et maintenant Let's GO
-======================
+----------------------
 
 Git est un logiciel de contrôle de versions décentralisé. Contrairement à Subversioni ou CVS, qui se base sur un unique dépôt avec lequel se synchronisent une ou plusieurs copies de travail (les copies de travail ne peuvent se synchroniser entre elles : elles doivent passer par le dépôt), chaque copie de travail d'un projet versioné avec Git joue aussi le rôle de dépôt, et il est possible de synchroniser entre elles n'importe quelles copies de travail. De plus, Git permet d'utiliser une ou plusieurs branche de développement et de fusionner entre elles ces branches de développement.
 
-1 Publication de révisions
---------------------------
+1 Publication de rÃ©visions
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Nous allons tout d'abord nous intéresser à l'aspect gestionnaire de version de Git: comment enregistrer l'historique des modifications apportées à un projet. Pour initialiser un repository, il convient d'invoquer la commande
 
 $ git init monrepo
