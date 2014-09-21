@@ -15,13 +15,13 @@
 
 **[Rappels des fondamentaux](#rappels-des-fondamentaux)**
 
-**[1 Publication de révisions](#1-publication-de-r-visions)**
+**[1 Publication de revisions](#1-publication-de-revisions)**
 
-**[2 Branches de développement](#2-branches-de-d-veloppement)**
+**[2 Branches de developpement](#2-branches-de-developpement)**
 
 **[3 Synchronisation de plusieurs repositories](#3-synchronisation-de-plusieurs-repositories)**
 
-**[4 Modifications publiées, modifications non publiées](#4-modifications-publi-es-modifications-non-publi-es)**
+**[4 Modifications publiees, modifications non publiees](#4-modifications-publiees-modifications-non-publiees)**
 
 **Note:** Pour convertir ce fichier en pdf : http://dillinger.io, Top menu > Utilities > Export as PDF File
 
@@ -84,7 +84,7 @@ Pour chaque copie de travail ajouter dans .gitignore
 
 Git est un logiciel de contrôle de versions décentralisé. Contrairement à Subversioni ou CVS, qui se base sur un unique dépôt avec lequel se synchronisent une ou plusieurs copies de travail (les copies de travail ne peuvent se synchroniser entre elles : elles doivent passer par le dépôt), chaque copie de travail d'un projet versioné avec Git joue aussi le rôle de dépôt, et il est possible de synchroniser entre elles n'importe quelles copies de travail. De plus, Git permet d'utiliser une ou plusieurs branche de développement et de fusionner entre elles ces branches de développement.
 
-### 1 Publication de révisions
+### 1 Publication de revisions
 Nous allons tout d'abord nous intéresser à l'aspect gestionnaire de version de Git: comment enregistrer l'historique des modifications apportées à un projet. Pour initialiser un repository, il convient d'invoquer la commande
 ```sh
 $ git init monrepo
@@ -123,7 +123,7 @@ $ git commit
 ```
 Que se passe-t-il ? Lisez le paragraphe DESCRIPTION de la page de manuel git-commit(1) (ce que l'on peut faire soit en invoquant man git-commit, soit git help commit). Commitez ces changements. Observer l'arbre de commit dans l'onglet History de Gitg (Attention, il faudra sans doute rafraîchir avec Ctrl+R).
 
-### 2 Branches de développement
+### 2 Branches de developpement
 La partie 1 présentait l'utilisation simple de Git pour creer un historique des modications. Nous allons maintenant nous concentrer sur la notion de branche. Lors du développement d'un projet, il peut arriver que l'on veuille introduire 1 une nouvelle fonctionnalite dans le projet, sans "casser" le projet. Nous voudrions donc pouvoir basculer instantanement de la version stable du projet à sa version "en développement". C'est ce que nous permettent de faire les branches.
 
 #### Question 2.1.
@@ -238,7 +238,7 @@ Effectuez des modifications dans le dépôt 1 puis récupérez-les dans le dépôt 3 a
 #### Question 3.10.
 Synchronisez entre eux les trois dépôts.
 
-### 4 Modifications publiées, modifications non publiées
+### 4 Modifications publiees, modifications non publiees
 Nous avons vu que les objets que s'echangent les dépôt gits sont des commits. Afin de maintenir une integrite des arbres de commit, Git utilise des primitives cryptographiques. Chaque commit est en fait signé, en fonction du patch qu'il représente, du nom d'auteur, de la date de creation, et aussi de la signature du commit parent (ou des deux parents, dans le cas d'un commit de fusion). Cette signature est un hachage SHA1 de toutes ces informations, et il est possible de se réferer à un commit uniquement par cette signature (de la forme f4ccba7ba89d4f6f8f0853056d47912c640a19c1) ou par un préfixe non ambigu de celle-ci (f4ccba7b).
 Ainsi Git n'appliquera pas un commit ailleurs que sur son père. L'utilisateur de Git pourra vouloir appliquer un commit ailleurs dans l'arbre de commit (par exemple sur une autre branche), il va pour cela devoir creer un nouveau commit (c'est à dire avec un SHA1 dfférent) mais qui contient les mêmes modifications.
 
