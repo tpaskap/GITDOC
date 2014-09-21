@@ -1,23 +1,22 @@
-﻿TP: Développement collaboratif décentralisé
+﻿= TP: DÃ©eloppement collaboratif dÃ©centrasÃ =
 
+Avant tout:
 
-Avant tout: 
+== Installation de git ==
 
-Installation de git
-===================
 
 $ sudo apt-get install git
 
-Installation d'outils graphiques
-================================
+=== Installation d'outils graphiques ===
+
 
 $ sudo apt-get install gitk
 $ sudo apt-get install git-gui
 $ sudo apt-get install gitg
 $ sudo apt-get install meld
 
-Customisation de l'environnement
-================================
+== Customisation de l'environnement ==
+
 
 $ cd ~
 $ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
@@ -88,7 +87,7 @@ Git a plusieurs interfaces utilisateur, la plus complète étant l'interface en 
 
 Depuis le répertoire de votre dépôt, lancez Gitg (ou lancez Gitg puis ouvrez votre dépôt).
 
-Gitg a deux onglets History et Commit. Dans l'onglet Commit, on remarque 4 cadres : 
+Gitg a deux onglets History et Commit. Dans l'onglet Commit, on remarque 4 cadres :
  - Unstaged qui contient la liste des modifications qui ont été apportées dans le dépôt et qui n'ont pas été sélectionnees pour être commitées.
  - Staged qui contient la liste des modifications qui ont été apportées et qui ont été sélectionnées pour être commitees.
  - Changes qui affiche une modification
@@ -122,9 +121,9 @@ Nous avons donc cree une nouvelle branche, qui est pour l'instant la même que l
 
 Question 2.2.
 Dans la branche developpement effectuez quelques modifications (modications dans les fichiers ou ajout/suppression de fichier), puis commitez-les. Observez ce qu'il se passe dans l'onglet History. (Selectionnez l'affichage de toutes les branches).
-En ligne de commande, pour afficher la branche courante, il suffit d'invoquer git branch. Une branche est créée à partir d'une autre au moyen de 
+En ligne de commande, pour afficher la branche courante, il suffit d'invoquer git branch. Une branche est créée à partir d'une autre au moyen de
 $ git branch MANOUVELLEBRANCHE
-, et le passage d'une branche à l'autre se fait au moyen de 
+, et le passage d'une branche à l'autre se fait au moyen de
 $ git checkout MABRANCHE
 
 Question 2.3.
@@ -179,7 +178,7 @@ git clone file:///$PATH_TO_REPO2 copietravail qui crée une copie de travail du 
 Question 3.4.
 Effectuez quelques modifications dans votre première copie de travail. Propagez ces modications dans votre troisieme dépôt :
 - Envoyez ces modifications dans le second dépôt (avec git push file:///PATH_TO_REPO2 BRANCHE:BRANCHE)
-- Puis depuis le troisieme dépôt, recupérez avec git pull, ces modications depuis le second dépôt. (Comme le troisieme dépôt a été créé à partir du second au moyen de git clone, il n'est pas nécessaire de préciser ici ou Git doit chercher les commits) 
+- Puis depuis le troisieme dépôt, recupérez avec git pull, ces modications depuis le second dépôt. (Comme le troisieme dépôt a été créé à partir du second au moyen de git clone, il n'est pas nécessaire de préciser ici ou Git doit chercher les commits)
 
 Nous avons mis en place avec le second et troisieme dépôt le schéma de collaboration avec Git le plus courant : il
 y a un dépôt qui fait offce de dépôt maître, et le troisieme dépôt qui peut récuperer et envoyer des commits sur le
