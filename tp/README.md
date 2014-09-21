@@ -179,11 +179,7 @@ Pour rendre la synchronisation plus interessante, nous allons utiliser une deuxi
 #### Question 3.3.
 Creez une nouvelle copie de travail à partir du dépôt bare:
 ```sh
-<<<<<<< HEAD
-$ git clone file:///$PATH_TO_REPO2 copietravail qui crÃ©e une copie de travail du second dÃ©pÃ´t dans le rÃ©pertoire copietravail.
-=======
 $ git clone file:///$PATH_TO_REPO2 copietravail qui crée une copie de travail du second dépôt dans le répertoire copietravail.
->>>>>>> 48f453568d69096dd8a52f87066d1c5f5eb26c5f
 ```
 
 #### Question 3.4.
@@ -218,19 +214,9 @@ $ git merge remotes/repo3/master
 ```
 Nous pouvons simplifier cette demarche en declarant que la branche master du dépôt 1 "suit" la branche master du dépôt 3, à l'aide de (depuis le dépôt 1)
 ```sh
-<<<<<<< HEAD
-$ git fetch repo3
-$ git checkout master
-$ git merge remotes/repo3/master
-```
-Nous pouvons simplifier cette demarche en declarant que la branche master du dÃ©pÃ´t 1 "suit" la branche master du dÃ©pÃ´t 3, Ã  l'aide de (depuis le dÃ©pÃ´t 1)
-```sh
 $ git branch master --set-upstream repo3/master.
 ```
-=======
-$ git branch master --set-upstream repo3/master.
-```
->>>>>>> 48f453568d69096dd8a52f87066d1c5f5eb26c5f
+
 
 #### Question 3.9.
 Effectuez des modifications dans le dépôt 1 puis récupérez-les dans le dépôt 3 au moyen de git pull.
