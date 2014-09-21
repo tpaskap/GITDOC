@@ -57,6 +57,7 @@ $ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
 
 ### Ajouter .gitconfig
 Ajouter dans ~/.gitconfig
+
      [user]
      	name = Prenom Nom
      	email = monaddresse@mail.fr
@@ -73,6 +74,7 @@ Ajouter dans ~/.gitconfig
 
 ### Ajout .gitignore
 Pour chaque copie de travail ajouter dans .gitignore
+
      [._]*.s[a-w][a-z]
      [._]s[a-w][a-z]
      *.un~
