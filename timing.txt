@@ -1,0 +1,47 @@
+Temps | Slides    |       RESUME
+-------------------------------------------   SCM
+09h30 | 1 - 30    | 
+                  |  - GIT is SCM
+                  |  - Panorama des SCM
+                  |  - A little about history 
+    35 min        |  - Who is using Git
+                  |  - Centralized SCM
+                  |  - Git is Distributed
+				  |  - GIT is Fast
+-------------------------------------------   Objet de la base Git
+10h05 | 30 - 56   | 
+                  | - Blob
+				  | - Tree and Commit
+				  | - Tag
+	40 min		  | - This makes Git Fast
+				  | - Some Benchmarking
+				  | - Git is Reliable
+                  | 
+--------------------------------------------  PAUSE 
+10h45  | 15 min   |  PAUSE
+--------------------------------------------  Using Git 
+11h00  | 57 - 85  |
+                  | git clone (reseau)
+	              | operation locale ss reseau : remote,  branch , log, 
+	30 min		  | checkout, add, commit
+				  | fetch remote, merge
+				  | add remote, push
+				  |
+--------------------------------------------  Agile
+11h30  | 85 - 120 | 
+                  | Agile
+				  | Re-Writing History : rebase, amend
+	1h			  | Cherry-Picking
+				  | GitFlow
+				  | How to structure a repository
+				  | Dictator & Lieutenants Workflow
+--------------------------------------------
+12h30             | 
+-------------------------------------------- PAUSE MIDI
+13h30             |
+-------------------------------------------- TP
+git_TP0.md.pdf
+git_TP1.pdf
+Git-branching-model_implementation.pdf
+-------------------------------------------- FIN TP
+18h00             |
