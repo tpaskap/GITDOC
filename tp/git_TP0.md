@@ -264,7 +264,10 @@ $ git branch master --set-upstream repo3/master
 ```
 
 #### Question 3.9.
-Effectuez des modifications dans le dépôt 1 puis récupérez-les dans le dépôt 3 au moyen de git pull.
+Effectuez des modifications dans le dépôt 1 puis récupérez-les dans le dépôt 3 au moyen de 
+```sh
+git pull repo1 master
+```
 
 #### Question 3.10.
 Synchronisez entre eux les trois dépôts.
