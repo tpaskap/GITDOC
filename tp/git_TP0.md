@@ -39,6 +39,16 @@ $ sudo apt-get install meld
 ```
 
 ## Customisation environnement
+
+
+### Selection d'un éditeur par défaut : vim
+```sh
+$ sudo apt-get install vim
+$ sudo update-alternatives --config editor
+```
+**Note:** choisir /usr/bin/vim.basic par défaut
+
+### Prompt pour GIT
 ```sh
 $ cd ~
 $ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
@@ -52,7 +62,7 @@ $ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
 * ``(experimental↓2↑3|✔)``: on branch ``experimental``; your branch has diverged by 3 commits, remote by 2 commits; the repository is otherwise clean
 * ``(:70c2952|✔)``: not on any branch; parent commit has hash ``70c2952``; the repository is otherwise clean
 
-##  Prompt Structure
+####  Prompt Structure
 
 By default, the general appearance of the prompt is::
 
@@ -75,7 +85,7 @@ The symbols are as follows:
   	When the branch name starts with a colon ``:``, it means it's actually a hash, not a branch (although it should be pretty clear, unless you name your branches like hashes :-)
 
 
-### Ajouter .bashrc
+#### Ajouter .bashrc
     GIT_PROMPT_ONLY_IN_REPO=1
     if [ -f ~/.bash-git-prompt/gitprompt.sh ]; then
           . ~/.bash-git-prompt/gitprompt.sh
@@ -325,5 +335,6 @@ Là encore, il est impératif de ne pas éditer un commit qui a déjà été pub
 
 #### Question 4.4.
 Creez un commit, envoyez-le vers un dépôt distant, puis amendez votre commit, synchronisez votre dépôt avec le dépôt distant.
+
 
 
