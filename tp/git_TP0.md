@@ -335,6 +335,3 @@ Là encore, il est impératif de ne pas éditer un commit qui a déjà été pub
 
 #### Question 4.4.
 Creez un commit, envoyez-le vers un dépôt distant, puis amendez votre commit, synchronisez votre dépôt avec le dépôt distant.
-
-
-
