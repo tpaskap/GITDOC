@@ -1,4 +1,4 @@
-# TP: Développement collaboratif décentralisé avec GIT
+# TP: Développement collaboratif décentralisé avec GIT.
 
 ## Sommaire
 **[Installation de git](#installation-de-git)**
